@@ -1,19 +1,17 @@
-const express = require('express')
-const { FacebookAdapter } = require('botbuilder-adapter-facebook')
-const app = express()
-
+const {FacebookAdapter} = require('botbuilder-adapter-facebook')
+const {Botkit} = require('botkit')
+const {CreateConversation} = require('./controller/CreateConveresation')
 require('dotenv').config()
-const PORT = process.env.PORT
 const adapter = new FacebookAdapter({
     verify_token: process.env.FACEBOOK_VERIFY_TOKEN,
     app_secret: process.env.FACEBOOK_APP_SECRET,
     access_token: process.env.FACEBOOK_ACCESS_TOKEN
 })
-
-app.post('/api/messages', (req, res) => {
-
+const controller = new Botkit({
+    adapter: adapter,
+    webhook_uri: '/webhook'
 })
-
-app.listen(PORT, ()=>{
-    console.log(`server is running on port: ${PORT}`)
+controller.on('message', async (bot, message) => {
+    const convo =await new CreateConversation(bot, message)
+    await convo.bot.say('gamarjobat')
 })
