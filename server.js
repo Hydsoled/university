@@ -1,6 +1,6 @@
 const {FacebookAdapter} = require('botbuilder-adapter-facebook')
 const {Botkit} = require('botkit')
-const {CreateConversation} = require('./controller/CreateConveresation')
+const {Communication} = require('./controller/CreateConveresation')
 require('dotenv').config()
 const adapter = new FacebookAdapter({
     verify_token: process.env.FACEBOOK_VERIFY_TOKEN,
@@ -12,6 +12,5 @@ const controller = new Botkit({
     webhook_uri: '/webhook'
 })
 controller.on('message', async (bot, message) => {
-    const convo =await new CreateConversation(bot, message)
-    await convo.bot.say('gamarjobat')
+    await Communication(bot, message)
 })
