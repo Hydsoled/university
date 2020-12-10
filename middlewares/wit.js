@@ -1,8 +1,8 @@
-const conversation = require('../controller/conversation')
+const {Conversation} = require('../controller/conversation')
 
 const wit = (body) => {
-    conversation.body = body
-    conversation.send('gamarjobat')
+    const convo = new Conversation(body)
+    convo.createConversation()
 }
 
 module.exports = {wit}

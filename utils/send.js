@@ -16,6 +16,8 @@ const send = function (text, id) {
     }, (error, res) => {
         if (!error && res.statusCode === 200) {
             console.log('sent')
+        }else {
+            console.log('error in send.js')
         }
     })
 }
