@@ -8,10 +8,11 @@ const Conversation = class Conversation {
     }
 
     createConversation() {
-        if (!this.isPerson()) {
+        if (!this.isPerson() || !this.body.message || !this.body.message.text) {
             return false
         }
         const text = this.body.message.text
+        console.log(text)
         const wordParser = new WordParser()
         const entity = wordParser.getEntity(text)
         controller(this, entity)
@@ -22,7 +23,7 @@ const Conversation = class Conversation {
     }
 
     isPerson() {
-        return !!(this.body.message && !this.body.message.is_echo);
+        return !!( this.body.message && !this.body.message.is_echo );
     }
 }
 module.exports = {
