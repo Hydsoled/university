@@ -39,7 +39,7 @@ const WordParser = class WordParser {
         const textArr = text.split(" ")
         let arr = keywords.getHello.find((word) => {
             for (let i = 0; i < textArr.length; i++) {
-                if (word === textArr[i]) {
+                if (word === textArr[i].toLowerCase()) {
                     return true
                 }
             }
@@ -51,7 +51,7 @@ const WordParser = class WordParser {
         const textArr = text.split(" ")
         let arr = keywords.getGoodbye.find((word) => {
             for (let i = 0; i < textArr.length; i++) {
-                if (word === textArr[i] && textArr.length === 1) {
+                if (word === textArr[i].toLowerCase() && textArr.length === 1) {
                     return true
                 }
             }
