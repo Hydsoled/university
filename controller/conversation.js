@@ -1,5 +1,6 @@
 const {send} = require('../utils/send')
 const {WordParser} = require('../nlp/wordParser')
+const {controller} = require('../controller/controller')
 
 const Conversation = class Conversation {
     constructor(body) {
@@ -13,11 +14,7 @@ const Conversation = class Conversation {
         const text = this.body.message.text
         const wordParser = new WordParser()
         const entity = wordParser.getEntity(text)
-        if (entity.getInfo === true) {
-            this.send('რა გნებავთ?')
-        } else {
-            this.send('ვერ გავიგე რა მითხარი')
-        }
+        controller(this, entity)
     }
 
     send(text) {
