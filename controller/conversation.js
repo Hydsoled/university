@@ -8,13 +8,13 @@ const Conversation = class Conversation {
     }
 
     createConversation() {
-        if (!this.isPerson() || !this.body.message || !this.body.message.text) {
+        if (!this.isPerson()) {
             return false
         }
-        const text = this.body.message.text
-        console.log(text)
         const wordParser = new WordParser()
+        const text = wordParser.deleteRepLetters(this.body.message.text)
         const entity = wordParser.getEntity(text)
+        console.log(text)
         controller(this, entity)
     }
 

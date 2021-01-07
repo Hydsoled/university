@@ -1,10 +1,12 @@
 const {smallTalks} = require('./smallTalks/smallTalks')
 const {dontUnderstand} = require('./dontUnderstand/dontUnderstand')
 const controller = (body, entity) => {
-    if (entity.smallTalk){
+    if (entity.smallTalk) {
         smallTalks(body, entity)
-    }else {
-        dontUnderstand(body,entity)
+    } else if (entity.getBotName) {
+        body.send("მე ვარ HYDSOLED Bot")
+    } else {
+        dontUnderstand(body, entity)
     }
 }
 

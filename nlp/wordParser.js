@@ -3,12 +3,21 @@ const keywords = require('./keywords')
 const WordParser = class WordParser {
     getEntity(text) {
         let entity = {}
-        entity.getInfo = this.getInfo(text)
-        entity.getBotName = this.getBotName(text)
         entity.getHello = this.getHello(text)
         entity.getGoodbye = this.getGoodbye(text)
         entity.smallTalk = !!(entity.getGoodbye || entity.getHello);
+        entity.getInfo = this.getInfo(text)
+        entity.getBotName = this.getBotName(text)
         return entity
+    }
+
+    deleteRepLetters(text){
+        let str = text[0]
+        let n = text.length
+        for (let i = 1; i < n; i++){
+            if (text[i]!==text[i-1]) str+=text[i]
+        }
+        return str
     }
 
     getInfo(text) {
