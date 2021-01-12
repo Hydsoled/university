@@ -4,6 +4,14 @@ const {wit} = require('./middlewares/wit')
 const app = express()
 require('dotenv').config()
 const VERIFY_TOKEN = process.env.FACEBOOK_VERIFY_TOKEN
+const mongoose = require('mongoose')
+mongoose.connect(process.env.MONGODB_URL, {
+    useCreateIndex: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}, (error) => {
+    if (error) throw error
+})
 
 app.use(bodyParser.json())
 app.post('/webhook', async (req, res) => {

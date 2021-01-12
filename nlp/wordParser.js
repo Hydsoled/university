@@ -5,9 +5,12 @@ const WordParser = class WordParser {
         let entity = {}
         entity.getHello = this.getHello(text)
         entity.getGoodbye = this.getGoodbye(text)
-        entity.smallTalk = !!(entity.getGoodbye || entity.getHello);
+        entity.smallTalk = !!(entity.getGoodbye || entity.getHello)
         entity.getInfo = this.getInfo(text)
-        entity.getBotName = this.getBotName(text)
+        entity.getAddress = this.getAddress(text)
+        entity.getMenu = this.getMenu(text)
+        entity.getWorkingTime = this.getWorkingTime(text)
+        entity.getDelivery = this.getDelivery(text)
         return entity
     }
 
@@ -23,18 +26,6 @@ const WordParser = class WordParser {
     getInfo(text) {
         const textArr = text.split(" ")
         let arr = keywords.getInfo.find((word) => {
-            for (let i = 0; i < textArr.length; i++) {
-                if (word === textArr[i]) {
-                    return true
-                }
-            }
-        });
-        return !!arr;
-    }
-
-    getBotName(text) {
-        const textArr = text.split(" ")
-        let arr = keywords.getBotName.find((word) => {
             for (let i = 0; i < textArr.length; i++) {
                 if (word === textArr[i]) {
                     return true
@@ -61,6 +52,50 @@ const WordParser = class WordParser {
         let arr = keywords.getGoodbye.find((word) => {
             for (let i = 0; i < textArr.length; i++) {
                 if (word === textArr[i].toLowerCase() && textArr.length === 1) {
+                    return true
+                }
+            }
+        });
+        return !!arr;
+    }
+    getAddress(text) {
+        const textArr = text.split(" ")
+        let arr = keywords.getAddress.find((word) => {
+            for (let i = 0; i < textArr.length; i++) {
+                if (word === textArr[i].toLowerCase()) {
+                    return true
+                }
+            }
+        });
+        return !!arr;
+    }
+    getMenu(text) {
+        const textArr = text.split(" ")
+        let arr = keywords.getMenu.find((word) => {
+            for (let i = 0; i < textArr.length; i++) {
+                if (word === textArr[i].toLowerCase()) {
+                    return true
+                }
+            }
+        });
+        return !!arr;
+    }
+    getWorkingTime(text) {
+        const textArr = text.split(" ")
+        let arr = keywords.getWorkingTime.find((word) => {
+            for (let i = 0; i < textArr.length; i++) {
+                if (word === textArr[i].toLowerCase()) {
+                    return true
+                }
+            }
+        });
+        return !!arr;
+    }
+    getDelivery(text) {
+        const textArr = text.split(" ")
+        let arr = keywords.getDelivery.find((word) => {
+            for (let i = 0; i < textArr.length; i++) {
+                if (word === textArr[i].toLowerCase()) {
                     return true
                 }
             }

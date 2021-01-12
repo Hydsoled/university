@@ -1,8 +1,8 @@
 const {Conversation} = require('../controller/conversation')
 
-const wit = (body) => {
+const wit = async (body) => {
     const convo = new Conversation(body)
-    convo.createConversation()
+    await convo.createConversation()
 }
 
 module.exports = {wit}
