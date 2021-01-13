@@ -1,12 +1,13 @@
 const keywords = require('./keywords')
+const letterParser = require('./letterParser')
 
 const WordParser = class WordParser {
     getEntity(text) {
         let entity = {}
+        if (text.length > 700) return
         entity.getHello = this.getHello(text)
         entity.getGoodbye = this.getGoodbye(text)
         entity.smallTalk = !!(entity.getGoodbye || entity.getHello)
-        entity.getInfo = this.getInfo(text)
         entity.getAddress = this.getAddress(text)
         entity.getMenu = this.getMenu(text)
         entity.getWorkingTime = this.getWorkingTime(text)
@@ -23,23 +24,15 @@ const WordParser = class WordParser {
         return str
     }
 
-    getInfo(text) {
-        const textArr = text.split(" ")
-        let arr = keywords.getInfo.find((word) => {
-            for (let i = 0; i < textArr.length; i++) {
-                if (word === textArr[i]) {
-                    return true
-                }
-            }
-        });
-        return !!arr;
-    }
-
     getHello(text) {
         const textArr = text.split(" ")
         let arr = keywords.getHello.find((word) => {
             for (let i = 0; i < textArr.length; i++) {
                 if (word === textArr[i].toLowerCase()) {
+                    return true
+                }
+                const [a,b,c] = letterParser(textArr[i], word);
+                if (Math.abs(a-b)<=2 && a>4 && Math.abs(a-c) <=1 ){
                     return true
                 }
             }
@@ -54,6 +47,10 @@ const WordParser = class WordParser {
                 if (word === textArr[i].toLowerCase() && textArr.length === 1) {
                     return true
                 }
+                const [a,b,c] = letterParser(textArr[i], word);
+                if (Math.abs(a-b)<=2 && a>4 && Math.abs(a-c) <=1 ){
+                    return true
+                }
             }
         });
         return !!arr;
@@ -63,6 +60,10 @@ const WordParser = class WordParser {
         let arr = keywords.getAddress.find((word) => {
             for (let i = 0; i < textArr.length; i++) {
                 if (word === textArr[i].toLowerCase()) {
+                    return true
+                }
+                const [a,b,c] = letterParser(textArr[i], word);
+                if (Math.abs(a-b)<=2 && a>4 && Math.abs(a-c) <=1 ){
                     return true
                 }
             }
@@ -76,6 +77,10 @@ const WordParser = class WordParser {
                 if (word === textArr[i].toLowerCase()) {
                     return true
                 }
+                const [a,b,c] = letterParser(textArr[i], word);
+                if (Math.abs(a-b)<=2 && a>4 && Math.abs(a-c) <=1 ){
+                    return true
+                }
             }
         });
         return !!arr;
@@ -87,6 +92,10 @@ const WordParser = class WordParser {
                 if (word === textArr[i].toLowerCase()) {
                     return true
                 }
+                const [a,b,c] = letterParser(textArr[i], word);
+                if (Math.abs(a-b)<=2 && a>4 && Math.abs(a-c) <=1 ){
+                    return true
+                }
             }
         });
         return !!arr;
@@ -96,6 +105,10 @@ const WordParser = class WordParser {
         let arr = keywords.getDelivery.find((word) => {
             for (let i = 0; i < textArr.length; i++) {
                 if (word === textArr[i].toLowerCase()) {
+                    return true
+                }
+                const [a,b,c] = letterParser(textArr[i], word);
+                if (Math.abs(a-b)<=2 && a>4 && Math.abs(a-c) <=1 ){
                     return true
                 }
             }
